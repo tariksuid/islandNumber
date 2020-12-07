@@ -4,12 +4,15 @@ public class Main_Leet {
 
 	public static void main(String[] args) {
 
-		int[] ar = { 20, 12, 4, 3, 1, 0, -1 };
-		MergeSort ms = new MergeSort();
-		ms.sort(ar, 0, ar.length - 1);
+		/*
+		 * int[] ar = { 20, 12, 4, 3, 1, 0, -1 }; MergeSort ms = new MergeSort();
+		 * ms.sort(ar, 0, ar.length - 1);
+		 * 
+		 * for (int i : ar) System.out.print(i + " ");
+		 */
 
-		for (int i : ar)
-			System.out.print(i + " ");
+		StringPermutation sp = new StringPermutation();
+		sp.strinPer("abcc", "");
 	}
 }
 
@@ -61,5 +64,30 @@ class MergeSort {
 
 		for (int idx = l; idx < r + 1; idx++)
 			ar[idx] = tmp[idx - l];
+	}
+}
+
+class StringPermutation {
+
+	void strinPer(String s, String ans) {
+
+		// base case
+		if (s.length() == 0)
+			System.out.println(ans);
+
+		boolean tmpAr[] = new boolean[26];
+		for (int i = 0; i < s.length(); i++) {
+
+			// take each letter as the first letter..
+			char ch = s.charAt(i);
+
+			String tmp = s.substring(0, i) + s.substring(i + 1);
+
+			if (!tmpAr[ch - 'a'])
+				strinPer(tmp, ans + ch);
+
+			tmpAr[ch - 'a'] = true;
+
+		}
 	}
 }
